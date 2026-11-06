@@ -1,0 +1,8 @@
+[
+  {"site_code": "YTC", "range_complex_id": "rc-kofa", "title": "155mm fuze qualification (Lot 7)", "start": "2026-12-08T07:00:00", "end": "2026-12-08T15:00:00",
+   "weapon_class": "155mm_howitzer", "firing_point_id": "fp-k1", "target_area_id": "ta-k-north", "equipment_ids": ["eq-m777-1", "eq-radar-1"], "personnel_ids": ["p-ruiz", "p-hale"]},
+  {"site_code": "YTC", "range_complex_id": "rc-mobility", "title": "JLTV desert durability lap", "start": "2026-12-08T06:00:00", "end": "2026-12-10T18:00:00",
+   "weapon_class": "none", "equipment_ids": ["eq-dyno-1"], "personnel_ids": ["p-okafor"]},
+  {"site_code": "YTC", "range_complex_id": "rc-dz", "title": "JPADS guided airdrop", "start": "2026-12-09T08:00:00", "end": "2026-12-09T12:00:00",
+   "weapon_class": "none", "equipment_ids": ["eq-drop-1", "eq-tspi-1"], "personnel_ids": ["p-brooks", "p-nguyen"]}
+]

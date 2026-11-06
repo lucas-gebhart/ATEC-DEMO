@@ -1,0 +1,99 @@
+[
+ {
+  "id": "p-ruiz",
+  "site_code": "YTC",
+  "name": "M. Ruiz",
+  "role": "Test Director",
+  "qualifications": [
+   "live_fire_indirect",
+   "munitions_lethality",
+   "fuze_performance"
+  ]
+ },
+ {
+  "id": "p-chen",
+  "site_code": "YTC",
+  "name": "A. Chen",
+  "role": "Test Director",
+  "qualifications": [
+   "uas_flight",
+   "aircraft_armament",
+   "target_acquisition"
+  ]
+ },
+ {
+  "id": "p-okafor",
+  "site_code": "YTC",
+  "name": "J. Okafor",
+  "role": "Test Officer",
+  "qualifications": [
+   "mobility_durability",
+   "vehicle_performance",
+   "environmental_desert"
+  ]
+ },
+ {
+  "id": "p-hale",
+  "site_code": "YTC",
+  "name": "R. Hale",
+  "role": "Range Safety Officer",
+  "qualifications": [
+   "live_fire_indirect",
+   "live_fire_direct",
+   "missile_flight",
+   "c_ied"
+  ]
+ },
+ {
+  "id": "p-nguyen",
+  "site_code": "YTC",
+  "name": "T. Nguyen",
+  "role": "Instrumentation Engineer",
+  "qualifications": [
+   "munitions_lethality",
+   "fuze_performance",
+   "airdrop",
+   "guided_airdrop",
+   "uas_flight"
+  ]
+ },
+ {
+  "id": "p-brooks",
+  "site_code": "YTC",
+  "name": "K. Brooks",
+  "role": "Airdrop Test Officer",
+  "qualifications": [
+   "airdrop",
+   "guided_airdrop"
+  ]
+ },
+ {
+  "id": "p-diaz",
+  "site_code": "YTC",
+  "name": "L. Diaz",
+  "role": "Test Officer",
+  "qualifications": [
+   "c_ied",
+   "mine_countermine",
+   "survivability"
+  ]
+ },
+ {
+  "id": "p-walker",
+  "site_code": "YTC",
+  "name": "S. Walker",
+  "role": "Environmental Engineer",
+  "qualifications": [
+   "environmental_desert",
+   "materiel_storage",
+   "soldier_systems"
+  ]
+ },
+ {
+  "id": "p-ford",
+  "site_code": "YTC",
+  "name": "D. Ford",
+  "role": "Range Scheduler",
+  "qualifications": []
+ }
+]

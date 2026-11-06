@@ -1,0 +1,44 @@
+{
+  "test_mission_areas": [
+    {"code": "wheeled_vehicle", "label": "Wheeled Vehicle"},
+    {"code": "tracked_vehicle", "label": "Tracked Vehicle"},
+    {"code": "uas", "label": "Unmanned Aircraft System (UAS)"},
+    {"code": "missile", "label": "Missile"},
+    {"code": "artillery", "label": "Artillery / Indirect Fire"},
+    {"code": "aviation", "label": "Rotary-Wing Aviation"},
+    {"code": "airdrop", "label": "Airdrop / Parachute Systems"},
+    {"code": "electronic_warfare", "label": "Electronic Warfare / C5ISR"},
+    {"code": "soldier_systems", "label": "Soldier Systems"},
+    {"code": "c_ied", "label": "Counter-IED / Countermine"}
+  ],
+  "test_functions": [
+    {"code": "mobility_durability", "label": "Mobility & Durability", "mission_areas": ["wheeled_vehicle", "tracked_vehicle"]},
+    {"code": "vehicle_performance", "label": "Automotive Performance", "mission_areas": ["wheeled_vehicle", "tracked_vehicle"]},
+    {"code": "environmental_desert", "label": "Desert Environmental", "mission_areas": ["wheeled_vehicle", "tracked_vehicle", "uas", "missile", "artillery", "aviation", "soldier_systems", "electronic_warfare"]},
+    {"code": "environmental_cold", "label": "Cold Regions Environmental", "mission_areas": ["wheeled_vehicle", "tracked_vehicle", "uas", "soldier_systems", "aviation"]},
+    {"code": "environmental_tropic", "label": "Tropic Environmental", "mission_areas": ["soldier_systems", "uas", "electronic_warfare"]},
+    {"code": "live_fire_indirect", "label": "Live Fire - Indirect", "mission_areas": ["artillery", "missile"]},
+    {"code": "live_fire_direct", "label": "Live Fire - Direct", "mission_areas": ["tracked_vehicle", "wheeled_vehicle", "soldier_systems"]},
+    {"code": "munitions_lethality", "label": "Munitions Lethality", "mission_areas": ["artillery", "missile"]},
+    {"code": "fuze_performance", "label": "Fuze Performance", "mission_areas": ["artillery", "missile"]},
+    {"code": "missile_flight", "label": "Missile Flight Test", "mission_areas": ["missile"]},
+    {"code": "aircraft_armament", "label": "Aircraft Armament", "mission_areas": ["aviation", "uas"]},
+    {"code": "target_acquisition", "label": "Target Acquisition / Sensors", "mission_areas": ["aviation", "uas", "electronic_warfare"]},
+    {"code": "uas_flight", "label": "UAS Flight Test", "mission_areas": ["uas"]},
+    {"code": "airdrop", "label": "Personnel & Cargo Airdrop", "mission_areas": ["airdrop"]},
+    {"code": "guided_airdrop", "label": "Guided Precision Airdrop", "mission_areas": ["airdrop"]},
+    {"code": "c_ied", "label": "Counter-IED", "mission_areas": ["c_ied", "wheeled_vehicle"]},
+    {"code": "mine_countermine", "label": "Mine / Countermine", "mission_areas": ["c_ied", "tracked_vehicle"]},
+    {"code": "survivability", "label": "Survivability / Live Fire T&E", "mission_areas": ["wheeled_vehicle", "tracked_vehicle", "c_ied"]},
+    {"code": "ew_spectrum", "label": "EW & Spectrum", "mission_areas": ["electronic_warfare", "uas"]},
+    {"code": "soldier_systems", "label": "Soldier Systems Evaluation", "mission_areas": ["soldier_systems"]},
+    {"code": "materiel_storage", "label": "Materiel Storage & Aging", "mission_areas": ["missile", "artillery", "soldier_systems"]}
+  ],
+  "weapon_classes": [
+    {"code": "155mm_howitzer", "label": "155mm Howitzer", "max_range_km": 30, "sdz_half_angle_deg": 8},
+    {"code": "105mm_howitzer", "label": "105mm Howitzer", "max_range_km": 15, "sdz_half_angle_deg": 8},
+    {"code": "120mm_mortar", "label": "120mm Mortar", "max_range_km": 8, "sdz_half_angle_deg": 10},
+    {"code": "gmlrs", "label": "GMLRS Rocket", "max_range_km": 70, "sdz_half_angle_deg": 5},
+    {"code": "none", "label": "No surface danger zone", "max_range_km": 0, "sdz_half_angle_deg": 0}
+  ]
+}

@@ -1,0 +1,14 @@
+[
+ {
+  "uei": "ACME12345XYZ",
+  "cage": "7ACM1",
+  "legal_name": "Acme Defense Systems LLC",
+  "naics": [
+   "336992",
+   "541715"
+  ],
+  "poc_name": "Jordan Lee",
+  "poc_email": "jordan.lee@acme.example",
+  "address": "100 Example Way, Huntsville, AL"
+ }
+]

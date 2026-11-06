@@ -1,0 +1,24 @@
+[
+ {
+  "username": "acme.industry",
+  "display": "Acme Defense Systems (industry)",
+  "role": "industry",
+  "company_uei": "ACME12345XYZ"
+ },
+ {
+  "username": "g3.planner",
+  "display": "ATEC G3 Planner",
+  "role": "g3"
+ },
+ {
+  "username": "ytc.scheduler",
+  "display": "YTC Range Scheduler",
+  "role": "range_scheduler",
+  "site_code": "YTC"
+ },
+ {
+  "username": "atec.hq",
+  "display": "ATEC HQ Viewer",
+  "role": "atec_viewer"
+ }
+]

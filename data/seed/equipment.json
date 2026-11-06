@@ -1,0 +1,129 @@
+[
+ {
+  "id": "eq-m777-1",
+  "site_code": "YTC",
+  "name": "M777A2 Howitzer (test gun)",
+  "category": "weapon_platform",
+  "supports_functions": [
+   "live_fire_indirect",
+   "fuze_performance"
+  ],
+  "range_complex_id": "rc-kofa"
+ },
+ {
+  "id": "eq-radar-1",
+  "site_code": "YTC",
+  "name": "Weibel Doppler Radar",
+  "category": "instrumentation",
+  "supports_functions": [
+   "live_fire_indirect",
+   "munitions_lethality",
+   "fuze_performance",
+   "missile_flight"
+  ],
+  "range_complex_id": "rc-kofa"
+ },
+ {
+  "id": "eq-hscam-1",
+  "site_code": "YTC",
+  "name": "High-Speed Camera Array",
+  "category": "instrumentation",
+  "supports_functions": [
+   "munitions_lethality",
+   "fuze_performance",
+   "airdrop",
+   "c_ied"
+  ],
+  "range_complex_id": null
+ },
+ {
+  "id": "eq-tspi-1",
+  "site_code": "YTC",
+  "name": "TSPI Tracking Mount",
+  "category": "instrumentation",
+  "supports_functions": [
+   "aircraft_armament",
+   "uas_flight",
+   "guided_airdrop",
+   "target_acquisition"
+  ],
+  "range_complex_id": "rc-cibola"
+ },
+ {
+  "id": "eq-telemetry-1",
+  "site_code": "YTC",
+  "name": "Mobile Telemetry Van",
+  "category": "instrumentation",
+  "supports_functions": [
+   "uas_flight",
+   "missile_flight",
+   "guided_airdrop"
+  ],
+  "range_complex_id": null
+ },
+ {
+  "id": "eq-dyno-1",
+  "site_code": "YTC",
+  "name": "Chassis Dynamometer",
+  "category": "automotive",
+  "supports_functions": [
+   "vehicle_performance",
+   "mobility_durability"
+  ],
+  "range_complex_id": "rc-mobility"
+ },
+ {
+  "id": "eq-dustchamber-1",
+  "site_code": "YTC",
+  "name": "Dust & Sand Chamber",
+  "category": "environmental",
+  "supports_functions": [
+   "environmental_desert"
+  ],
+  "range_complex_id": "rc-mobility"
+ },
+ {
+  "id": "eq-solar-1",
+  "site_code": "YTC",
+  "name": "Solar Radiation Exposure Site",
+  "category": "environmental",
+  "supports_functions": [
+   "environmental_desert",
+   "materiel_storage"
+  ],
+  "range_complex_id": "rc-castle-dome"
+ },
+ {
+  "id": "eq-blast-1",
+  "site_code": "YTC",
+  "name": "Blast Overpressure Gauge Set",
+  "category": "instrumentation",
+  "supports_functions": [
+   "c_ied",
+   "survivability",
+   "mine_countermine"
+  ],
+  "range_complex_id": "rc-ncties"
+ },
+ {
+  "id": "eq-drop-1",
+  "site_code": "YTC",
+  "name": "Drop Zone Scoring System",
+  "category": "instrumentation",
+  "supports_functions": [
+   "airdrop",
+   "guided_airdrop"
+  ],
+  "range_complex_id": "rc-dz"
+ },
+ {
+  "id": "eq-uas-gcs-1",
+  "site_code": "YTC",
+  "name": "UAS Ground Control Shelter",
+  "category": "aviation",
+  "supports_functions": [
+   "uas_flight"
+  ],
+  "range_complex_id": "rc-laguna"
+ }
+]

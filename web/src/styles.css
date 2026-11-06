@@ -1,0 +1,28 @@
+:root { --navy: #112e51; --blue: #005ea2; --gold: #ffbe2e; --ink: #1b1b1b; --line: #dfe1e2; --bg: #f0f0f0; --red: #b50909; --green: #00a91c;
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif; color: var(--ink); }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); }
+.usa-banner-lite { background: #f0f0f0; font-size: 12px; padding: 4px 16px; border-bottom: 1px solid var(--line); }
+.topbar { display: flex; align-items: center; gap: 24px; background: var(--navy); color: #fff; padding: 10px 16px; }
+.brand { font-weight: 700; font-size: 18px; }
+.seal { background: var(--gold); color: var(--navy); padding: 2px 6px; border-radius: 3px; margin-right: 6px; }
+.topbar nav { display: flex; gap: 16px; flex: 1; }
+.topbar nav a { color: #dfe1e2; text-decoration: none; padding: 4px 0; }
+.topbar nav a.active { color: #fff; border-bottom: 3px solid var(--gold); }
+.who { font-size: 14px; }
+button.link { background: none; border: 0; color: var(--gold); cursor: pointer; text-decoration: underline; }
+main { padding: 16px; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 20px; margin-bottom: 16px; }
+.narrow { max-width: 420px; margin: 40px auto; }
+label { display: block; font-weight: 600; margin: 12px 0 4px; }
+input, select, textarea { display: block; width: 100%; padding: 8px; border: 1px solid #565c65; border-radius: 2px; font: inherit; margin-top: 4px; }
+button.primary { background: var(--blue); color: #fff; border: 0; padding: 10px 20px; border-radius: 4px; font-weight: 700; cursor: pointer; }
+button.secondary { background: #fff; color: var(--blue); border: 2px solid var(--blue); padding: 8px 18px; border-radius: 4px; font-weight: 700; cursor: pointer; }
+button.danger { background: var(--red); color: #fff; border: 0; padding: 10px 20px; border-radius: 4px; font-weight: 700; cursor: pointer; }
+.hint { color: #565c65; font-size: 14px; }
+.error { color: var(--red); }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; background: #e7f2f5; color: var(--navy); }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); }
+.mapwrap { position: relative; height: calc(100vh - 110px); }
+.map { height: 100%; width: 100%; }
