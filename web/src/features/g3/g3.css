@@ -1,0 +1,25 @@
+.g3-banner { background: #e7f2f5; border-left: 6px solid var(--blue); padding: 8px 12px; margin-bottom: 16px; font-weight: 600; font-size: 14px; }
+.g3-banner.on { background: #ecf3ec; border-left-color: var(--green); }
+.g3-table td { vertical-align: top; }
+.g3-funcs { max-width: 280px; }
+.g3-chip { display: inline-block; background: var(--bg); border-radius: 3px; padding: 1px 6px; margin: 0 4px 4px 0; font-size: 13px; }
+.tag.g3-rules { background: #dfe1e2; color: var(--ink); }
+.tag.g3-devin { background: var(--navy); color: #fff; }
+.g3-status-in_review { background: #faf3d1; color: #5c4809; }
+.tag.g3-status-approved, .tag.g3-status-scheduled { background: #ecf3ec; color: #154c21; }
+.tag.g3-status-rejected { background: #f4e3db; color: var(--red); }
+.g3-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.g3-head h1 { margin: 0; flex: 1; }
+.g3-score { font-size: 28px; font-weight: 700; color: var(--navy); }
+.g3-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.g3-grid .card { margin-bottom: 0; }
+.g3-wide { grid-column: 1 / -1; }
+.g3-kv { display: grid; grid-template-columns: 150px 1fr; gap: 6px 12px; margin: 0; }
+.g3-kv dt { font-weight: 600; color: #565c65; }
+.g3-kv dd { margin: 0; }
+.g3-risks li { color: #5c4809; }
+.g3-actions { display: flex; gap: 12px; align-items: flex-start; flex-wrap: wrap; }
+.g3-checks label { font-weight: 400; display: flex; gap: 8px; align-items: center; margin: 4px 0; }
+.g3-checks input { width: auto; display: inline; margin: 0; }
+.g3-closed { color: var(--red); font-weight: 700; }
+@media (max-width: 900px) { .g3-grid { grid-template-columns: 1fr; } }
