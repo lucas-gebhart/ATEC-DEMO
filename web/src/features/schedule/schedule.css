@@ -1,0 +1,44 @@
+.sched-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.sched-head h1 { margin: 0; }
+.sched-weeknav { display: flex; align-items: center; gap: 12px; }
+.sched-grid { table-layout: fixed; margin-top: 12px; }
+.sched-grid th:first-child { width: 170px; }
+.sched-grid td, .sched-grid th { border: 1px solid var(--line); vertical-align: top; font-size: 13px; }
+.sched-grid thead th { background: #f0f0f0; }
+.sched-grid td { height: 44px; padding: 4px; }
+.sched-chip { display: block; width: 100%; text-align: left; margin-bottom: 4px; padding: 4px 6px; font: inherit; font-size: 12px; cursor: pointer;
+  background: #e7f2f5; border: 1px solid #97d4ea; border-left: 4px solid var(--blue); border-radius: 3px; }
+.sched-chip.live { background: #fde8e1; border-color: #f2938c; border-left-color: var(--red); }
+.sched-chip.sel { outline: 3px solid var(--gold); }
+.sched-road { display: block; color: var(--red); font-weight: 700; }
+.sched-list { margin-top: 12px; }
+.sched-list summary { cursor: pointer; font-weight: 600; }
+button.link.sched-link { color: var(--blue); padding: 0; font: inherit; }
+.sched-cols { display: grid; grid-template-columns: minmax(380px, 1fr) minmax(420px, 1.2fr); gap: 16px; align-items: start; }
+.sched-cols h2 { margin-top: 0; }
+.sched-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.sched-checks { border: 1px solid var(--line); border-radius: 4px; margin: 12px 0 0; padding: 4px 10px 8px; max-height: 190px; overflow: auto; }
+.sched-checks legend { font-weight: 600; }
+.sched-checks label { display: flex; align-items: center; gap: 6px; font-weight: 400; margin: 4px 0; font-size: 14px; }
+.sched-checks input { display: inline; width: auto; margin: 0; }
+.sched-actions { display: flex; gap: 12px; align-items: center; margin-top: 16px; }
+.sched-actions button:disabled { opacity: 0.5; cursor: not-allowed; }
+.sched-ok { color: #00701a; font-weight: 600; }
+.sched-result h3 { margin: 16px 0 6px; }
+.sched-kms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+.sched-kms div { border: 1px solid var(--line); border-radius: 4px; padding: 8px; text-align: center; }
+.sched-kms span { display: block; font-size: 12px; color: #565c65; }
+.sched-kms strong { font-size: 22px; }
+.sched-kms .red { color: var(--red); }
+.sched-kms .green { color: #00701a; }
+.sched-conflicts { list-style: none; padding: 0; margin: 0; }
+.sched-conflicts li { padding: 6px 8px; margin-bottom: 4px; border-left: 4px solid; background: #f9f9f9; font-size: 14px; }
+.sched-conflicts li.hard { border-color: var(--red); }
+.sched-conflicts li.hard .tag { background: var(--red); color: #fff; }
+.sched-conflicts li.soft { border-color: var(--gold); }
+.sched-mapcard { position: sticky; top: 8px; }
+.sched-legend { display: flex; gap: 14px; font-size: 13px; margin-bottom: 8px; }
+.sched-legend i { display: inline-block; width: 14px; height: 10px; margin-right: 4px; vertical-align: middle; }
+.sched-legend i.dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--navy); background: #fff; }
+.sched-map { height: 560px; width: 100%; }
+@media (max-width: 1000px) { .sched-cols { grid-template-columns: 1fr; } }
