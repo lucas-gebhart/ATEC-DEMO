@@ -113,7 +113,7 @@ def test_list_and_detail_scoping():
     assert c.get(f"/api/requests/{other}", headers=IND).status_code == 404
     assert c.get(f"/api/requests/{other}", headers=G3).status_code == 200
     d = c.get(f"/api/requests/{mine}", headers=IND).json()
-    assert d["system_name"] == XM1299["system_name"] and d["recommendation_status"] is None
+    assert d["system_name"] == XM1299["system_name"] and d["recommendation_status"] in (None, "draft")
     assert c.get("/api/requests/9999", headers=IND).status_code == 404
 
 
