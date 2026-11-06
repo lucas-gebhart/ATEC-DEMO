@@ -1,0 +1,35 @@
+/* WS1 industry intake styles (builds on styles.css) */
+.ind-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.ind-head h1 { margin: 0 0 8px; }
+.button-link { background: var(--blue); color: #fff; padding: 10px 20px; border-radius: 4px; font-weight: 700; text-decoration: none; }
+.ind-form { max-width: 760px; }
+.ind-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.ind-fieldhint { display: block; font-weight: 400; }
+.ind-invalid > input, .ind-invalid > select, .ind-invalid input { border: 2px solid var(--red); }
+.ind-invalid .error, label .error { display: block; font-weight: 600; font-size: 14px; margin-top: 4px; }
+.ind-fieldset { border: 1px solid var(--line); border-radius: 4px; margin: 16px 0; padding: 4px 12px 12px; }
+.ind-fieldset.ind-invalid { border-left: 4px solid var(--red); }
+.ind-fieldset legend { font-weight: 600; padding: 0 4px; }
+.ind-checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px 16px; }
+label.ind-check { display: flex; align-items: center; gap: 8px; font-weight: 400; margin: 6px 0; }
+label.ind-check input { width: auto; margin: 0; }
+.ind-company { display: flex; gap: 32px; background: #e7f2f5; border-left: 4px solid var(--navy); padding: 10px 16px; margin: 8px 0 16px; }
+.ind-company dt { font-size: 12px; text-transform: uppercase; color: #565c65; }
+.ind-company dd { margin: 0; font-weight: 700; }
+.ind-alert { background: #f4e3db; border-left: 4px solid var(--red); padding: 10px 16px; margin-bottom: 8px; }
+.ind-success { color: var(--green); font-weight: 700; }
+.ind-success-box { background: #ecf3ec; border-left: 4px solid var(--green); padding: 10px 16px; margin-bottom: 8px; font-weight: 600; }
+.ind-details { display: grid; grid-template-columns: 220px 1fr; gap: 8px 16px; }
+.ind-details dt { font-weight: 600; }
+.ind-details dd { margin: 0; }
+.ind-steps { display: flex; list-style: none; padding: 0; margin: 16px 0; counter-reset: step; }
+.ind-steps li { flex: 1; text-align: center; padding: 8px 4px; border-bottom: 4px solid var(--line); color: #565c65; font-size: 14px; }
+.ind-steps li.done { border-color: var(--blue); color: var(--ink); }
+.ind-steps li.current { border-color: var(--gold); font-weight: 700; color: var(--navy); }
+.tag.status-submitted { background: #e7f2f5; color: var(--navy); }
+.tag.status-planning { background: #fef0c8; color: #5c4809; }
+.tag.status-in_review { background: #d9e8f6; color: #1a4480; }
+.tag.status-approved, .tag.status-scheduled { background: #ecf3ec; color: #154c21; }
+.tag.status-rejected { background: #f4e3db; color: var(--red); }
+.ind-form input, .ind-form select, .ind-form textarea { font-weight: 400; }
+.ind-form input[readonly] { background: var(--bg); color: #565c65; }
