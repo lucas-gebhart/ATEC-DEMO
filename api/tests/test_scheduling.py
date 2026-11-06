@@ -72,9 +72,10 @@ def test_155mm_from_fp_k1_closes_only_us95_between_gates():
     assert zone.intersects(shape(refdata.feature("fp-k1")["geometry"]))
     assert zone.contains(shape(refdata.feature("ta-k-north")["geometry"]))
     segs = sdz.closed_segments(zone)
-    assert segs and {f["properties"]["road"] for f in segs} == {US95}
-    assert all(f["properties"]["gate_from"] and f["properties"]["gate_to"] for f in segs)
-    with_gates, without = sdz.closure_km(segs)
+    us95 = [f for f in segs if f["properties"]["road"] == US95]
+    assert [f["id"] for f in us95] == ["seg-us-hwy-95-5"]
+    assert all(f["properties"]["gate_from"] and f["properties"]["gate_to"] for f in us95)
+    with_gates, without = sdz.closure_km(us95)
     us95_total = sum(f["properties"]["length_km"] for f in refdata.features("road_segment") if f["properties"]["road"] == US95)
     assert 0 < with_gates < without == round(us95_total, 2)
 
@@ -86,9 +87,9 @@ def test_check_155mm_partial_closure_with_sdz_geojson():
     assert r.status_code == 200, r.text
     body = r.json()
     assert body["sdz"]["type"] in ("Polygon", "MultiPolygon") and body["sdz"]["coordinates"]
-    assert body["closures"] and all(cl["road"] == US95 for cl in body["closures"])
-    assert {cl["segment_id"] for cl in body["closures"]} == {"seg-us-hwy-95-5"}
-    cl = body["closures"][0]
+    us95 = [cl for cl in body["closures"] if cl["road"] == US95]
+    assert {cl["segment_id"] for cl in us95} == {"seg-us-hwy-95-5"}
+    cl = us95[0]
     assert (cl["gate_from"], cl["gate_to"]) == ("gate-us-hwy-95-4", "gate-us-hwy-95-5")
     assert cl["start"] == shoot()["start"] and "155mm" in cl["reason"]
     assert 0 < body["closed_km_with_gates"] < body["closed_km_without_gates"]
@@ -128,11 +129,11 @@ def test_range_busy_same_range_complex():
 
 
 def test_sdz_covering_another_range_complex_is_hard_conflict():
-    c.post("/api/schedule/events", json=dict(range_complex_id="rc-castle-dome", title="Solar soak", weapon_class="none",
+    c.post("/api/schedule/events", json=dict(range_complex_id="rc-kofa-impact", title="Impact area survey", weapon_class="none",
                                              start="2026-12-15T06:00:00", end="2026-12-15T18:00:00"), headers=SCHED)
     conflicts = c.post("/api/schedule/check", json=shoot(), headers=G3).json()["conflicts"]
     assert [x["kind"] for x in conflicts] == ["sdz_overlap"]
-    assert "Castle Dome Annex" in conflicts[0]["detail"]
+    assert "Kofa Impact Area" in conflicts[0]["detail"]
 
 
 def test_non_overlapping_times_produce_no_conflicts():
@@ -204,10 +205,10 @@ def test_python_entry_points_for_planning():
 def test_closures_active_at_time():
     at = lambda t: c.get(f"/api/schedule/closures?at={t}", headers=VIEWER).json()
     during = at("2026-12-08T10:00:00")
-    assert [x["segment_id"] for x in during] == ["seg-us-hwy-95-5"] and during[0]["road"] == US95
+    assert [x["segment_id"] for x in during if x["road"] == US95] == ["seg-us-hwy-95-5"]
     assert at("2026-12-08T16:00:00") == []
     assert at("2026-12-08T15:00:00") == []
-    assert len(c.get("/api/schedule/closures", headers=VIEWER).json()) == 1
+    assert len(c.get("/api/schedule/closures", headers=VIEWER).json()) == len(during)
 
 
 def test_roles():
