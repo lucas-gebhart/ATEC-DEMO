@@ -1,4 +1,6 @@
 """Foundation endpoints: auth, taxonomy, ATEC sites and map layers, YTC resources."""
+from typing import Optional
+
 from fastapi import APIRouter, Depends, HTTPException
 
 from .. import refdata
@@ -51,8 +53,12 @@ def site(code: str):
 
 
 @router.get("/geo/installations", dependencies=[Depends(require(*ATEC_ROLES))])
-def installations():
-    return refdata.installations()
+def installations(code: Optional[str] = None):
+    """Census TIGER 2024 installation boundaries; `code` filters to one ATEC site."""
+    fc = refdata.installations()
+    if code is None:
+        return fc
+    return {**fc, "features": [f for f in fc["features"] if f["properties"].get("code") == code]}
 
 
 @router.get("/geo/sites/{code}/layers", dependencies=[Depends(require(*ATEC_ROLES))])
@@ -61,6 +67,23 @@ def site_layers(code: str):
     if code != "YTC":
         return {"type": "FeatureCollection", "features": []}
     return refdata.ytc_layers()
+
+
+@router.get("/geo/sites/{code}/roads/summary", dependencies=[Depends(require(*ATEC_ROLES))])
+def site_road_summary(code: str):
+    """Per gated road: length inside the installation (what closes without gates) and its gates/segments."""
+    if code != "YTC":
+        return []
+    roads: dict[str, dict] = {}
+    for f in refdata.features("road_segment"):
+        p = f["properties"]
+        r = roads.setdefault(p["road"], {"road": p["road"], "length_km": 0.0, "segments": [], "gates": []})
+        r["length_km"] = round(r["length_km"] + p["length_km"], 2)
+        r["segments"].append(p["id"])
+    for f in refdata.features("gate"):
+        if f["properties"]["road"] in roads:
+            roads[f["properties"]["road"]]["gates"].append(f["properties"]["id"])
+    return list(roads.values())
 
 
 @router.get("/geo/sites/{code}/roads", dependencies=[Depends(require(*ATEC_ROLES))])
