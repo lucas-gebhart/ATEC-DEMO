@@ -1,5 +1,11 @@
 """Builds data/geo/ytc_layers.geojson: YTC range complexes, firing points, impact areas,
-gates and gated US-95 / range-road segments, laid out on the real TIGER boundary and roads."""
+gates and gated US-95 / range-road segments, laid out on the real TIGER boundary and roads.
+
+Placement sources (public): Census TIGER/Line 2024 boundary and roads; OpenStreetMap (ODbL) for the
+Laguna Army Airfield footprint (relation 14707120), the General Motors Desert Proving Ground tenant
+area (relation 14707124, kept out of Army range complexes), the Kofa firing-front facilities east of
+US-95 and the former North Army Airfield on Cibola Range; Esri World Imagery for visual checks.
+Every feature is kept inside the TIGER installation boundary."""
 import json
 from pathlib import Path
 
@@ -24,6 +30,25 @@ def poly(*pts):
     return Polygon([(lon, lat) for lat, lon in pts]).intersection(ypg)
 
 
+def inside(geom):
+    assert geom.difference(ypg).area <= 1e-9 and (geom.area or ypg.contains(geom)), geom
+    return geom
+
+
+LAGUNA_AAF = poly((32.8544, -114.3849), (32.8468, -114.3899), (32.8444, -114.3846), (32.8397, -114.3833),
+                  (32.835, -114.3865), (32.8353, -114.3904), (32.8331, -114.3918), (32.8362, -114.3982),
+                  (32.8375, -114.3974), (32.8382, -114.399), (32.8396, -114.3997), (32.8484, -114.3937),
+                  (32.8511, -114.3932), (32.8586, -114.4004), (32.8591, -114.4032), (32.8643, -114.3995),
+                  (32.866, -114.4016), (32.8667, -114.4012), (32.8664, -114.4042), (32.8729, -114.3973),
+                  (32.8782, -114.3958), (32.8796, -114.3948), (32.8753, -114.3814), (32.8688, -114.374),
+                  (32.862, -114.3797))
+GM_DESERT_PG = Polygon([(lon, lat) for lat, lon in (
+    (32.9207, -114.3296), (32.9215, -114.3268), (32.9187, -114.3244), (32.9165, -114.3242), (32.9072, -114.3303),
+    (32.8837, -114.3456), (32.8761, -114.3504), (32.879, -114.3586), (32.8823, -114.3629), (32.8841, -114.3633),
+    (32.886, -114.3584), (32.8915, -114.3538), (32.8939, -114.356), (32.8871, -114.3683), (32.8968, -114.3737),
+    (32.9029, -114.3795), (32.9175, -114.3699), (32.9259, -114.3384), (32.926, -114.33))]).buffer(0.002)
+
+
 features = []
 
 
@@ -35,43 +60,43 @@ def add(kind, fid, name, geom, **props):
 
 complexes = [
     ("rc-kofa", "Kofa Firing Range", "artillery",
-     poly((32.98, -114.36), (33.12, -114.36), (33.12, -114.05), (32.98, -114.05)),
+     poly((32.96, -114.36), (33.06, -114.36), (33.06, -114.12), (32.96, -114.12)),
      ["live_fire_indirect", "live_fire_direct", "munitions_lethality", "fuze_performance"]),
     ("rc-kofa-impact", "Kofa Impact Area", "impact_area",
-     poly((33.0, -114.15), (33.18, -114.15), (33.18, -113.85), (33.0, -113.85)),
+     poly((32.97, -114.12), (33.20, -114.12), (33.20, -113.80), (32.97, -113.80)),
      ["live_fire_indirect", "munitions_lethality"]),
     ("rc-cibola", "Cibola Range", "aviation",
-     poly((33.25, -114.45), (33.50, -114.45), (33.50, -114.15), (33.25, -114.15)),
+     poly((33.22, -114.47), (33.55, -114.47), (33.55, -114.25), (33.22, -114.25)),
      ["aircraft_armament", "uas_flight", "target_acquisition", "airdrop"]),
-    ("rc-laguna", "Laguna Army Airfield", "airfield",
-     poly((32.85, -114.41), (32.88, -114.41), (32.88, -114.38), (32.85, -114.38)),
+    ("rc-laguna", "Laguna Army Airfield", "airfield", LAGUNA_AAF,
      ["uas_flight", "airdrop", "aircraft_armament"]),
     ("rc-mobility", "Mobility Test Courses", "mobility",
-     poly((32.80, -114.37), (32.92, -114.37), (32.92, -114.30), (32.80, -114.30)),
+     poly((32.79, -114.372), (32.875, -114.372), (32.875, -114.30), (32.79, -114.30))
+     .difference(GM_DESERT_PG).difference(LAGUNA_AAF.buffer(0.002)),
      ["mobility_durability", "environmental_desert", "vehicle_performance"]),
     ("rc-ncties", "Counter-IED Test Complex", "c_ied",
-     poly((32.92, -114.25), (32.98, -114.25), (32.98, -114.15), (32.92, -114.15)),
+     poly((32.90, -114.27), (32.955, -114.27), (32.955, -114.17), (32.90, -114.17)),
      ["c_ied", "mine_countermine", "survivability"]),
     ("rc-castle-dome", "Castle Dome Annex", "environmental",
-     poly((33.05, -114.05), (33.15, -114.05), (33.15, -113.95), (33.05, -113.95)),
+     poly((32.88, -114.12), (32.96, -114.12), (32.96, -114.00), (32.88, -114.00)),
      ["environmental_desert", "materiel_storage", "soldier_systems"]),
     ("rc-dz", "Drop Zone Complex", "airdrop",
-     poly((33.20, -114.30), (33.28, -114.30), (33.28, -114.18), (33.20, -114.18)),
+     poly((33.32, -114.315), (33.41, -114.315), (33.41, -114.262), (33.32, -114.262)),
      ["airdrop", "guided_airdrop"]),
 ]
 for fid, name, rtype, geom, funcs in complexes:
-    add("range_complex", fid, name, geom, range_type=rtype, test_functions=funcs)
+    add("range_complex", fid, name, inside(geom), range_type=rtype, test_functions=funcs)
 
 firing_points = [("fp-k1", "Kofa FP-1 (west of US-95)", 33.040, -114.330),
-                 ("fp-k2", "Kofa FP-2", 33.090, -114.250),
+                 ("fp-k2", "Kofa FP-2", 33.016, -114.246),
                  ("fp-k3", "Kofa FP-3", 33.000, -114.200)]
 for fid, name, lat, lon in firing_points:
-    add("firing_point", fid, name, Point(lon, lat), range_complex_id="rc-kofa")
+    add("firing_point", fid, name, inside(Point(lon, lat)), range_complex_id="rc-kofa")
 
-targets = [("ta-k-north", "Kofa Impact North", 33.13, -114.00, 0.035),
+targets = [("ta-k-north", "Kofa Impact North", 33.065, -113.99, 0.035),
            ("ta-k-east", "Kofa Impact East", 33.05, -113.92, 0.03)]
 for fid, name, lat, lon, r in targets:
-    add("target_area", fid, name, Point(lon, lat).buffer(r), range_complex_id="rc-kofa-impact")
+    add("target_area", fid, name, inside(Point(lon, lat).buffer(r)), range_complex_id="rc-kofa-impact")
 
 gated_roads = {"US Hwy 95": [0.10, 0.35, 0.48, 0.60, 0.72, 0.90],
                "Castle Dome Mine Rd": [0.3, 0.6],

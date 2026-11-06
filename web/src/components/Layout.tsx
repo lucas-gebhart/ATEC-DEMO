@@ -11,7 +11,7 @@ export default function Layout() {
       <header className="topbar">
         <div className="brand"><span className="seal">ATEC</span> Test Planning &amp; Range Scheduling</div>
         <nav>
-          {user?.role === "industry" && <><NavLink to="/industry">My requests</NavLink><NavLink to="/industry/new">New test request</NavLink><NavLink to="/industry/company">Company profile</NavLink></>}
+          {user?.role === "industry" && <><NavLink to="/industry" end>My requests</NavLink><NavLink to="/industry/new">New test request</NavLink><NavLink to="/industry/company">Company profile</NavLink></>}
           {user?.role === "g3" && <NavLink to="/g3">G3 review queue</NavLink>}
           {atec && <><NavLink to="/atec/map">ATEC map</NavLink><NavLink to="/atec/sites/YTC">YTC</NavLink><NavLink to="/atec/schedule">Range schedule</NavLink></>}
         </nav>
