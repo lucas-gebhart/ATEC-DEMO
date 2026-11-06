@@ -214,6 +214,36 @@ def to_event(payload: RecommendationPayload, title: str) -> ProposedEvent:
                          equipment_ids=payload.equipment_ids, personnel_ids=payload.personnel_ids)
 
 
+def _ids(ids, pool):
+    names = {x["id"]: x["name"] for x in pool}
+    return ", ".join(names.get(i, i) for i in ids) or "none"
+
+
+def note_edits(original: RecommendationPayload, edited: RecommendationPayload) -> RecommendationPayload:
+    """Prepend G3 edit bullets so the stored rationale doesn't silently describe the pre-edit plan."""
+    changes = []
+    for field, label, fmt in [
+        ("range_complex_id", "range complex", _name),
+        ("proposed_start", "start", str), ("proposed_end", "end", str),
+        ("weapon_class", "weapon class", lambda c: _weapon(c)["label"] if c and c != "none" else "none"),
+        ("firing_point_id", "firing point", lambda f: _name(f) if f else "none"),
+        ("target_area_id", "target area", lambda f: _name(f) if f else "none"),
+    ]:
+        a, b = getattr(original, field), getattr(edited, field)
+        if a != b:
+            changes.append(f"{label} {fmt(a)} -> {fmt(b)}")
+    for field, label, pool in [("equipment_ids", "equipment", refdata.equipment()),
+                               ("personnel_ids", "crew", refdata.personnel())]:
+        a, b = getattr(original, field), getattr(edited, field)
+        if set(a) != set(b):
+            changes.append(f"{label} {_ids(a, pool)} -> {_ids(b, pool)}")
+    if changes:
+        edited.reasoning = [f"G3 edited the plan: {'; '.join(changes)}.",
+                            "Matcher rationale below describes the original draft."] + \
+                           [r for r in original.reasoning if not r.startswith("G3 edited") and not r.startswith("Matcher rationale")]
+    return edited
+
+
 def event_title(req) -> str:
     return f"{req['system_name']} ({req.get('company_uei', '')})".replace(" ()", "")
 

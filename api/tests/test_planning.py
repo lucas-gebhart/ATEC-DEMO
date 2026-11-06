@@ -121,6 +121,8 @@ def test_approve_with_edits_schedules(monkeypatch):
     r = c.post(f"/api/recommendations/{rec_id}/decision", headers=G3,
                json={"decision": "approve", "note": "moved to FP-2", "edits": payload})
     assert r.json()["payload"]["firing_point_id"] == "fp-k2"
+    edit_note = r.json()["payload"]["reasoning"][0]
+    assert edit_note.startswith("G3 edited the plan:") and "Kofa FP-3 -> Kofa FP-2" in edit_note and "2026-12-11" in edit_note
     ev, req_id, rec = calls[0]
     assert (ev.firing_point_id, ev.start, ev.range_complex_id, req_id, rec) == ("fp-k2", "2026-12-11T07:00:00", "rc-kofa", rid, rec_id)
     assert request_row(rid)["status"] == "scheduled"

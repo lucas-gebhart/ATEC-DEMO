@@ -170,6 +170,7 @@ def decide(rec_id: int, body: DecisionIn, user: Persona = Depends(require("g3"))
     else:
         p = body.edits or RecommendationPayload.model_validate(rec["payload"])
         if body.edits:
+            p = matcher.note_edits(RecommendationPayload.model_validate(rec["payload"]), p)
             p.schedule_check = None
             p = matcher.attach_schedule_check(p, req)
         req_status = "scheduled" if _schedule(p, req, rec_id) else "approved"
